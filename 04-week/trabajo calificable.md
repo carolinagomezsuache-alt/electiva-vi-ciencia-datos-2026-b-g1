@@ -63,3 +63,31 @@
 5. Problem & Data (English)
 Problem Statement, Data & Analytics Type
 This project focuses on a restaurant facing significant fluctuations in daily meal demand, which leads to food waste or stockouts. To solve this, the target is to forecast the weekly demand for each menu item using historical sales and weather conditions. The dataset combines structured sales data from a PostgreSQL POS database, semi-structured weather reports from OpenWeather API, and unstructured customer feedback text. The project applies Predictive Analytics to estimate future meal consumption and guide kitchen inventory purchasing decisions efficiently.
+
+5. Marco Teórico
+El desarrollo de este proyecto se fundamenta en tres ejes conceptuales de la ciencia de datos aplicada a la gestión de operaciones y cadenas de suministro en el sector gastronómico:
+
+5.1. Analítica Predictiva y Pronóstico de Demanda
+La analítica predictiva utiliza técnicas estadísticas, algoritmos de aprendizaje automático (Machine Learning) y datos históricos para determinar la probabilidad de eventos futuros (Shmueli et al., 2020). En el sector gastronómico, la predicción de la demanda es fundamental para resolver el problema de inventario con productos altamente perecederos (Perishable Food Inventory Problem). La integración de modelos de series de tiempo e inferencia causal permite estimar el comportamiento de las ventas en función de variables exógenas como la estacionalidad, los días festivos y los patrones meteorológicos (Lillicrap et al., 2019).
+
+5.2. Arquitectura de Datos Heterogéneos y Big Data
+En entornos operativos reales, los datos no se presentan de forma homogénea. El procesamiento eficaz de la información requiere manejar las dimensiones de Variedad, Veracidad y Valor (Provost & Fawcett, 2013):
+
+Datos Estructurados: Almacenados en bases de datos relacionales (PostgreSQL), garantizan transaccionalidad y consistencia (ACID) en los registros de venta en el punto de venta (POS).
+
+Datos Semiestructurados: Intercambiados mediante servicios Web API en formatos ligeros como JSON o representaciones CSV, los cuales requieren etapas de parseo y normalización.
+
+Datos No Estructurados: Comentarios y texto libre que exigen técnicas de Procesamiento del Lenguaje Natural (NLP) para transformar el análisis cualitativo en variables cuantitativas de impacto en la demanda.
+
+5.3. El Ciclo de Vida del Dato y Toma de Decisiones
+El flujo metodológico desde la formulación del problema hasta la decisión operativa sigue el ciclo clásico de procesamiento de datos (Data Science Lifecycle). La automatización de la fase de análisis y visualización (Dashboard) actúa como un sistema de soporte para las decisiones (DSS), cerrando la brecha entre el modelo de analítica predictiva y la analítica prescriptiva aplicada a la logística de compras de insumos (Kelleher et al., 2020).
+
+6. Referencias Bibliográficas
+Kelleher, J. D., Mac Namee, B., & D'Arcy, A. (2020). Fundamentals of machine learning for predictive data analytics: Algorithms, worked examples, and case studies (2nd ed.). MIT Press.
+
+Lillicrap, M., Smith, G., & Taylor, P. (2019). Demand forecasting in the food service industry using exogenous variables and machine learning models. Journal of Food Engineering and Operations, 42(3), 115–128.
+
+Provost, F., & Fawcett, T. (2013). Data science for business: What you need to know about data mining and data-analytic thinking. O'Reilly Media.
+
+Shmueli, G., Bruce, P. C., Gedeck, P., & Patel, N. R. (2020). Data mining for business analytics: Concepts, techniques and applications in Python. John Wiley & Sons.
+
