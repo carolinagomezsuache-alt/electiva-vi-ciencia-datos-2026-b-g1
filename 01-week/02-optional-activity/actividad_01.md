@@ -24,3 +24,9 @@
 
 ## 4. Tipo de Analítica
 * **Clasificación:** **Analítica Predictiva** (con componentes de analítica prescriptiva para la toma de decisiones de compra).
+Ñ
+## 5. Referencias Bibliográficas
+
+* **Davenport, T. H., & Harris, J.** (2017). *Competing on analytics: Updated, with a new introduction: The new science of winning*. Harvard Business Press.
+* **Kelleher, J. D., Mac Namee, B., & D'Arcy, A.** (2020). *Fundamentals of machine learning for predictive data analytics: Algorithms, worked examples, and case studies* (2nd ed.). MIT Press.
+* **Provost, F., & Fawcett, T.** (2013). *Data science for business: What you need to know about data mining and data-analytic thinking*. O'Reilly Media.
