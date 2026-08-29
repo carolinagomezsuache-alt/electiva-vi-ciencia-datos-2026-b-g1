@@ -42,3 +42,11 @@ Las tres **V** más críticas para nuestro caso de estudio son:
   * **Detección:** Implementar reglas de validación en la canalización de datos (*data pipeline*), verificando *outliers* o picos atípicos (por ejemplo, 50 platillos vendidos exactamente al mismo segundo) e identificando registros con IDs de transacción duplicados.
   * **Acción:** Filtrar y limpiar las marcas de tiempo usando la hora real de impresión de comanda en cocina antes de alimentar los modelos de predicción.
   
+  ## 4. Referencias Bibliográficas
+
+* **Cai, L., & Zhu, Y.** (2015). The challenges of data quality and data quality assessment in the big data era. *Data Science Journal*, 14, 2. https://doi.org/10.5334/dsj-2015-002
+* **Kelleher, J. D., Mac Namee, B., & D'Arcy, A.** (2020). *Fundamentals of machine learning for predictive data analytics: Algorithms, worked examples, and case studies* (2nd ed.). MIT Press.
+* **Provost, F., & Fawcett, T.** (2013). *Data science for business: What you need to know about data mining and data-analytic thinking*. O'Reilly Media.
+* **Zikopoulos, P., DeRoos, D., Bienko, K., Buglio, R., & Eaton, C.** (2015). *Big data analytics: Beyond the hype*. McGraw-Hill Education.
+
+  
