@@ -34,3 +34,10 @@ Para las capas **Predictiva** y **Prescriptiva**, se utilizará **Machine Learni
 ### Estrategia de Mitigación:
 1. **Filtrado de Anomalías:** Aplicar reglas de detección de *outliers* para excluir períodos atípicos del entrenamiento.
 2. **Supervisión Humana en el Bucle (*Human-in-the-loop*):** El chef o administrador de cocina revisará y validará la recomendación antes de emitir la orden de compra.
+
+## 4. Referencias Bibliográficas
+
+* **Barocas, S., Hardt, M., & Narayanan, A.** (2023). *Fairness and machine learning: Limitations and opportunities*. MIT Press.
+* **Kelleher, J. D., Mac Namee, B., & D'Arcy, A.** (2020). *Fundamentals of machine learning for predictive data analytics: Algorithms, worked examples, and case studies* (2nd ed.). MIT Press.
+* **Provost, F., & Fawcett, T.** (2013). *Data science for business: What you need to know about data mining and data-analytic thinking*. O'Reilly Media.
+* **Shmueli, G., Bruce, P. C., Gedeck, P., & Patel, N. R.** (2020). *Data mining for business analytics: Concepts, techniques and applications in Python*. John Wiley & Sons.
