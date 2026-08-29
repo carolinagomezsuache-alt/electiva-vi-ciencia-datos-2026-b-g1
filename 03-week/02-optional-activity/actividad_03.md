@@ -82,3 +82,10 @@ Batch (Por Lotes): Procesamiento nocturno programado para consolidar históricos
 | **Procesamiento** | `Apache Spark` (`PySpark`) | Motor distribuido ideal para realizar transformaciones pesadas, limpieza de datos, uniones de grandes volúmenes y ejecuciones de algoritmos de Machine Learning. |
 | **Almacenamiento Analítico** | `PostgreSQL` / `Snowflake` | Ofrece un motor relacional robusto con soporte optimizado para consultas SQL complejas necesarias en reportes gerenciales. |
 | **Análisis / BI** | `Power BI` / `Metabase` | Facilita la creación de paneles interactivos e intuitivos para que el equipo de cocina y administración visualice la demanda proyectada de insumos.
+
+## 4. Referencias Bibliográficas
+
+* **Armbrust, M., Ghodsi, A., Xin, R., & Zaharia, M.** (2021). Lakehouse: A new generation of open platforms that unify data warehousing and advanced analytics. *Proceedings of Conference on Innovative Data Systems Research (CIDR)*.
+* **Kleppmann, M.** (2017). *Designing data-intensive applications: The big ideas behind reliable, scalable, and maintainable systems*. O'Reilly Media.
+* **Marz, N., & Warren, J.** (2015). *Big Data: Principles and best practices of scalable realtime data systems*. Manning Publications.
+* **White, T.** (2015). *Hadoop: The definitive guide: Storage and analysis at Internet scale* (4th ed.). O'Reilly Media.
