@@ -25,13 +25,17 @@ Descriptiva: ¿Cuál fue el producto más vendido en la cafetería durante el ú
 Predictiva: ¿Cuántas unidades de café se venderán la próxima semana, según la tendencia histórica de ventas y factores como el clima o los días festivos?
 
 3. Diagrama del flujo de datos
-+-----------+     +------------------+     +-------------+     +----------------+
-|  Fuente   | --> | Almacenamiento   | --> |  Análisis   | --> | Visualización  |
-+-----------+     +------------------+     +-------------+     +----------------+
-POS, app de       Base de datos /            Modelos y BI       Dashboard con
-domicilios,        data warehouse en          (Power BI, Excel   gráficos de
-reseñas             la nube                    avanzado)          ventas/tendencias
+3. Diagrama del flujo de datos
 
+```text
++--------------+     +--------------------+     +------------+     +---------------+
+|    Fuente    | --> |   Almacenamiento   | --> |  Análisis  | --> | Visualización |
++--------------+     +--------------------+     +------------+     +---------------+
+| POS, app de  |     | Base de datos /    |     | Modelos    |     | Dashboard con |
+| domicilios,  |     | data warehouse en  |     | y BI       |     | gráficos de   |
+| reseñas      |     | la nube            |     |            |     | ventas        |
++--------------+     +--------------------+     +------------+     +---------------+
+```
 Detalle:
 
 Fuente: sistema POS, app de domicilios, reseñas en Google.
