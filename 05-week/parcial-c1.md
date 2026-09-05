@@ -25,7 +25,6 @@ Descriptiva: ¿Cuál fue el producto más vendido en la cafetería durante el ú
 Predictiva: ¿Cuántas unidades de café se venderán la próxima semana, según la tendencia histórica de ventas y factores como el clima o los días festivos?
 
 3. Diagrama del flujo de datos
-3. Diagrama del flujo de datos
 
 ```text
 +--------------+     +--------------------+     +------------+     +---------------+
