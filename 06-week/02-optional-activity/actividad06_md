@@ -1,0 +1,64 @@
+# Entrega Actividad Semana 06 - Ciencia de Datos 
+
+**Estudiante:** Wendy Carolina Gómez Suache  
+**Programa:** Ingeniería Mecatrónica / Industrial  
+
+
+## 1. Diseño del Modelo Entidad-Relación (ERD)
+
+Para este caso de estudio, se modela un **Sistema de Gestión de Pedidos y Menú de Restaurante**. El diseño cuenta con 3 entidades principales y 1 tabla intermedia para resolver la relación muchos a muchos ($N:M$).
+
+### Entidad 1: `CLIENTES`
+* `cliente_id` (**PK**, INT, Auto-increment)
+* `nombre` (VARCHAR(100))
+* `email` (VARCHAR(100), Unique)
+* `telefono` (VARCHAR(20))
+* `direccion` (VARCHAR(200))
+
+### Entidad 2: `PLATOS`
+* `plato_id` (**PK**, INT, Auto-increment)
+* `nombre_plato` (VARCHAR(100))
+* `precio_unitario` (DECIMAL(10,2))
+* `categoria` (VARCHAR(50))
+
+### Entidad 3: `PEDIDOS`
+* `pedido_id` (**PK**, INT, Auto-increment)
+* `fecha_hora` (DATETIME)
+* `cliente_id` (**FK**, INT) $\rightarrow$ *Referencia a `CLIENTES(cliente_id)`*
+* `estado_pedido` (VARCHAR(30))
+
+### Entidad Intermedia ($N:M$): `DETALLE_PEDIDO`
+> *Resuelve la relación muchos a muchos entre `PEDIDOS` y `PLATOS` (Un pedido contiene varios platos; un mismo plato puede incluirse en varios pedidos).*
+
+* `pedido_id` (**PK**, **FK**, INT) $\rightarrow$ *Referencia a `PEDIDOS(pedido_id)`*
+* `plato_id` (**PK**, **FK**, INT) $\rightarrow$ *Referencia a `PLATOS(plato_id)`*
+* `cantidad` (INT)
+* `precio_historico` (DECIMAL(10,2))
+
+
+## 2. Justificación: Enfoque Relacional vs NoSQL
+
+**Decisión:** Se selecciona un **Enfoque Relacional (PostgreSQL / MySQL)**.
+
+**Justificación:**
+1. **Consistencia ACID y Transaccionalidad:** En la gestión de pedidos y facturación, es fundamental garantizar consistencia estricta. Si la inserción del detalle de un pedido falla, la transacción entera debe revertirse (*Atomicidad*).
+2. **Integridad Referencial:** Las claves foráneas ($FK$) garantizan que no existan huérfanos; es decir, no se pueden crear pedidos para clientes inexistentes ni agregar platos eliminados.
+3. **Desventaja de NoSQL en este caso:** Aunque un motor orientado a documentos (MongoDB) permite guardar los platos como un arreglo dentro del pedido, actualizar datos globales (como precios de menú o análisis de platos más vendidos) requeriría consultas complejas y escaneos de colecciones completas.
+
+
+
+## 3. Aplicación de Normalización
+
+El esquema diseñado cumple con las tres primeras Formas Normales ($1FN, 2FN, 3FN$):
+
+* **Primera Forma Normal (1FN):** Se eliminaron grupos repetitivos. Los ítems de cada orden no se almacenan como cadenas separadas por comas dentro de la tabla `PEDIDOS`, sino como registros individuales en `DETALLE_PEDIDO`.
+* **Segunda Forma Normal (2FN):** Atributos como `cantidad` dependen completamente de la clave compuesta (`pedido_id`, `plato_id`). Los atributos descriptivos del plato (`nombre_plato`, `categoria`) residen en `PLATOS` para no duplicarse por cada pedido.
+* **Tercera Forma Normal (3FN):** Se eliminaron dependencias transitivas. Los datos del cliente (`direccion`, `telefono`) se mantienen en `CLIENTES` y no en `PEDIDOS`, evitando redundancias si el cliente realiza múltiples compras.
+
+
+## 4. Referencias Bibliográficas (Formato IEEE)
+
+* **[1]** R. Elmasri y S. B. Navathe, *Fundamentals of Database Systems*, 7th ed. Boston, MA, USA: Pearson, 2016.
+* **[2]** A. Silberschatz, H. F. Korth, y S. Sudarshan, *Database System Concepts*, 7th ed. New York, NY, USA: McGraw-Hill Education, 2019.
+* **[3]** E. F. Codd, "A relational model of data for large shared data banks," *Communications of the ACM*, vol. 13, no. 6, pp. 377–387, Jun. 1970.
+* **[4]** PostgreSQL Global Development Group, "PostgreSQL 16.0 Documentation," PostgreSQL.org, 2023. [En línea]. Disponible: https://www.postgresql.org/docs/
