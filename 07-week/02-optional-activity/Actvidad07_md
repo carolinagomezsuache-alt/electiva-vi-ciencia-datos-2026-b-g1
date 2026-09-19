@@ -1,0 +1,55 @@
+# Wendy Carolina Gómez Suache
+**Programa:** Ingeniería Mecatrónica  
+**Institución:** Corporación Universitaria del Huila (CORHUILA)  
+**Asignatura:** Ciencia de Datos - Semana 7  
+
+
+
+# Actividad Práctica - Semana 7: Consultas SQL y Pandas
+
+## 1. Contexto del Dataset
+Para este ejercicio utilizaremos un escenario de una base de datos de gestión de pedidos y clientes de una tienda, dividida en dos tablas principales: `clientes` y `pedidos`.
+
+
+## 2. Consultas SQL
+
+### A. Consulta con WHERE (Filtro)
+Selecciona los clientes que pertenecen a la ciudad de Neiva.
+
+```sql
+SELECT id_cliente, nombre, ciudad 
+FROM clientes 
+WHERE ciudad = 'Neiva';
+Explicación: Filtra los registros de la tabla clientes mostrando únicamente aquellos cuya columna ciudad coincida exactamente con 'Neiva'.B. Consulta con JOIN (Relación de tablas)Obtiene el listado de los pedidos realizados, combinando la información del cliente con el detalle de su pedido.   SQLSELECT p.id_pedido, c.nombre, p.total, p.fecha 
+FROM pedidos p
+INNER JOIN clientes c ON p.id_cliente = c.id_cliente;
+Explicación: Relaciona ambas tablas mediante la llave foránea id_cliente para mostrar qué usuario realizó cada pedido junto con el monto total.C. Consulta con GROUP BY (Agregación)Calcula el monto total de ventas acumulado por cada ciudad de los clientes.   SQLSELECT c.ciudad, SUM(p.total) AS total_ventas
+FROM pedidos p
+INNER JOIN clientes c ON p.id_cliente = c.id_cliente
+GROUP BY c.ciudad;
+
+Explicación: Agrupa los registros por la ciudad del cliente y aplica la función de agregación SUM() para sumar los totales de las compras por zona geográfica.3. Equivalente en Pandas (Python)A continuación, se reproduce la operación de agregación (GROUP BY) utilizando la librería pandas[cite: 1]:Pythonimport pandas as pd
+
+# Simulación de carga de datos (DataFrames)
+clientes = pd.DataFrame({
+    'id_cliente': [1, 2, 3],
+    'nombre': ['Ana', 'Carlos', 'Lucía'],
+    'ciudad': ['Neiva', 'Bogotá', 'Neiva']
+})
+
+pedidos = pd.DataFrame({
+    'id_pedido': [101, 102, 103],
+    'id_cliente': [1, 2, 3],
+    'total': [150.0, 300.0, 200.0]
+})
+
+# 1. Realizar el equivalente al INNER JOIN con merge
+df_merged = pd.merge(pedidos, clientes, on='id_cliente')
+
+# 2. Agrupar por ciudad y sumar el total de ventas (GROUP BY equivalente)
+resultado_pandas = df_merged.groupby('ciudad')['total'].sum().reset_index()
+resultado_pandas.rename(columns={'total': 'total_ventas'}, inplace=True)
+
+print(resultado_pandas)
+
+4. Referencias BibliográficasCorporación Universitaria del Huila - CORHUILA. (2026). Guía de actividad práctica: Ciencia de Datos Semana 7 - Consultas SQL y pandas. Programa de Ingeniería Industrial / Ingeniería Mecatrónica. Neiva, Huila.McKinney, W. (2017). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (2nd ed.). O'Reilly Media.Coronel, C., & Morris, S. (2019). Database Systems: Design, Implementation, & Management (13th ed.). Cengage Learning.
