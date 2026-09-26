@@ -1,0 +1,87 @@
+# Actividad Semana 8: Diseño de un Pipeline ETL y Consumo de API
+**Asignatura:** Ciencia de Datos  
+**Programa:** Ingeniería Industrial  
+**Institución:** Corporación Universitaria del Huila (CORHUILA)  
+
+## 1. Diagrama y Diseño del Pipeline ETL
+
+Para este escenario, diseñaremos un pipeline ETL orientado a la captura de variables de consumo eléctrico y variables ambientales de una planta industrial para su posterior análisis de inteligencia de negocios (BI).
+
+### **Flujo del Pipeline:**
+
+### **Herramientas por cada paso:**
+1. **Fuentes (Sources):** 
+   * *Sensores IoT (MQTT/Modbus)* en maquinaria industrial [Streaming].
+   * *Base de datos relacional PostgreSQL* con el ERP de producción [Batch].
+   * *API pública de clima* (OpenWeatherMap) [Batch].
+2. **Extracción (Extract):** 
+   * **Apache Kafka** / **AWS Kinesis** para capturar eventos en tiempo real de los sensores.
+   * **Python (Pandas / Requests)** para consultas programadas a bases de datos y APIs externas.
+3. **Transformación (Transform):** 
+   * **Apache Spark** o **dbt (data build tool)** sobre **Snowflake / BigQuery** para limpieza, normalización de marcas de tiempo, manejo de valores nulos y cálculos de eficiencia energética (KPIs).
+4. **Carga (Load):** 
+   * **Amazon S3** (Data Lake) y **Snowflake / PostgreSQL** (Data Warehouse estructurado).
+5. **Business Intelligence (BI):** 
+   * **Microsoft Power BI** o **Tableau** para la creación de tableros de control gerenciales y operativas.
+
+---
+
+## 2. Justificación de Procesos: Batch vs. Streaming
+
+* **Procesamiento en Streaming (En tiempo real):**
+  * *¿Qué parte lo usa?:* La captura de datos de sensores IoT de vibración, temperatura y consumo eléctrico directo de las máquinas.
+  * *¿Por qué?:* Se requiere una respuesta inmediata (alertas tempranas) ante posibles fallas mecánicas, sobrecalentamientos o picos peligrosos de corriente para evitar paradas de planta no planificadas o accidentes laborales.
+* **Procesamiento por lotes (Batch):**
+  * *¿Qué parte lo usa?:* La extracción de órdenes de producción del ERP, datos de costos y consumo de energía histórico consolidado por día/semana, así como el clima de la zona.
+  * *¿Por qué?:* Estos datos no cambian segundo a segundo y se prestan mejor para consolidaciones periódicas (cierres de turno o cierres diarios) para análisis de tendencias y costos de producción sin saturar los recursos computacionales.
+
+---
+
+## 3. Script en Python: Consumo de una API Pública
+
+A continuación se presenta el código en Python utilizando la librería `requests` para consumir una API pública abierta (en este caso, información de la API pública de clima o datos abiertos) y mostrar por consola los primeros **3 registros**.
+
+Crea un archivo llamado `etl_api.py` y pega el siguiente código:
+
+```python
+import requests
+import json
+
+def consumir_api_publica():
+    # URL de una API pública de ejemplo (Listado de usuarios / datos JSON)
+    url = "[https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users)"
+    
+    try:
+        print("Realizando petición a la API...")
+        response = requests.get(url)
+        
+        # Verificamos si la petición fue exitosa (Código 200)
+        if response.status_code == 200:
+            data = response.json()
+            
+            print(f"\nConexión exitosa. Mostrando los primeros 3 registros:\n" + "-"*50)
+            
+            # Iteramos y mostramos únicamente 3 registros
+            for i, registro in enumerate(data[:3], start=1):
+                print(f"Registro #{i}:")
+                print(f"  - ID: {registro.get('id')}")
+                print(f"  - Nombre: {registro.get('name')}")
+                print(f"  - Usuario: {registro.get('username')}")
+                print(f"  - Correo: {registro.get('email')}")
+                print(f"  - Ciudad: {registro.get('address', {}).get('city')}")
+                print("-" * 50)
+        else:
+                    print(f"Error en la API. Código de estado: {response.status_code}")
+                    
+    except requests.exceptions.RequestException as e:
+        print(f"Ocurrió un error de conexión: {e}")
+
+if __name__ == "__main__":
+    consumir_api_publica()
+
+## Referencias Bibliográficas
+
+* Kimball, R., & Caserta, J. (2004). *The Data Warehouse ETL Toolkit: Practical Techniques for Extracting, Cleaning, Loading, and Storing Data*. Wiley.
+* Kleppmann, M. (2017). *Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems*. O'Reilly Media.
+* Reis, J., & Housley, M. (2022). *Fundamentals of Data Engineering: Plan and Build Robust Data Systems*. O'Reilly Media.
+* Python Software Foundation. (2026). *Requests: HTTP for Humans™*. Recuperado de https://requests.readthedocs.io/
