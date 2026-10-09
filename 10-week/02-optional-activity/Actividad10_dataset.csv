@@ -1,0 +1,11 @@
+id_pedido,cliente,categoria,tiempo_entrega_min,costo_envio,calificacion
+1,Ana Gomez,Comida Rapida,25,3.50,5
+2,Carlos Perez,Comida Rapida,40,4.00,3
+3,Maria Lopez,Italiana,30,5.00,4
+4,Juan Rodriguez,Italiana,55,5.00,2
+5,Sofia Torres,Mexicana,20,3.00,5
+6,Luis Gomez,Mexicana,35,3.50,4
+7,Andrea Ruiz,Comida Rapida,28,3.50,4
+8,Pedro Parra,Italiana,45,5.00,3
+9,Diana Rojas,Mexicana,22,3.00,5
+10,Mateo Castro,Comida Rapida,32,3.50,4
