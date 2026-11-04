@@ -1,6 +1,6 @@
 # c3-activity — Análisis temporal y visualización
 
-**Autor:** FULL_NAME · **GitHub:** GITHUB_USER
+**Autor:** carolina gomez  · **GitHub:** carolinagomezsuache-alt
 
 ## Contenido
 | Archivo | Descripción |
