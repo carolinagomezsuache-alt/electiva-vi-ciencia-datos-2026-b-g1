@@ -1,0 +1,22 @@
+-- ==========================================
+-- ANTES (Consulta lenta y no optimizada)
+-- ==========================================
+-- Problema: Usa SELECT *, aplica una función en el WHERE (lo que anula 
+-- el uso de índices) y no filtra columnas innecesarias.
+SELECT * 
+FROM ventas 
+WHERE YEAR(fecha_venta) = 2025;
+
+
+-- ==========================================
+-- DESPUÉS (Consulta optimizada)
+-- ==========================================
+-- Mejora: Selecciona solo las columnas necesarias, usa un rango de fechas 
+-- directo (permitiendo usar índices en la columna fecha) y se apoya en un índice.
+SELECT id_venta, cliente_id, total, fecha_venta 
+FROM ventas 
+WHERE fecha_venta >= '2025-01-01' 
+  AND fecha_venta < '2026-01-01';
+
+-- Creación de índice recomendado para acelerar la búsqueda por rango:
+CREATE INDEX idx_ventas_fecha ON ventas(fecha_venta);
