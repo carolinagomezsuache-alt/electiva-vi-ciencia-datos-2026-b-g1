@@ -1,6 +1,6 @@
 # Semana 5 del corte (sem 15) - parcial
 
-nombre:Wendy Carolina Gomez Suache
+**Nombre:** Wendy Carolina Gomez Suache
 
 ---
 
@@ -11,10 +11,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # 1. Cargar con la fecha como índice
-df = pd.read_csv("ventas.csv", parse_dates=["fecha"], index_col="fecha")
+df = pd.read_csv("ventas.csv", parse_dates=["fecha_venta"], index_col="fecha_venta")
 
 # 2. Agregar por periodo (mensual). En pandas < 2.2 usar "M" en vez de "ME"
-mensual = df["ventas"].resample("ME").sum()
+mensual = df["total"].resample("ME").sum()
 
 # 3. Media móvil de 3 meses
 mm3 = mensual.rolling(window=3).mean()
@@ -59,29 +59,29 @@ plt.show()
 
 ## Problema 3 - Optimización y métricas (2.0)
 
-**Consulta lenta**
+**Consulta lenta (antes)**
 
 ```sql
 SELECT *
 FROM ventas
-WHERE YEAR(fecha) = 2025;
+WHERE YEAR(fecha_venta) = 2025;
 ```
 
-**Consulta optimizada**
+**Consulta optimizada (después)**
 
 ```sql
-CREATE INDEX idx_ventas_fecha ON ventas(fecha);
+CREATE INDEX idx_ventas_fecha_venta ON ventas(fecha_venta);
 
-SELECT id_venta, fecha, id_cliente, total
+SELECT id_venta, cliente_id, total, fecha_venta
 FROM ventas
-WHERE fecha >= '2025-01-01' AND fecha < '2026-01-01';
+WHERE fecha_venta >= '2025-01-01' AND fecha_venta < '2026-01-01';
 ```
 
 **Por qué mejora**
 
 1. Se piden solo las **columnas necesarias** en vez de `SELECT *`, lo que reduce la cantidad de datos leídos.
-2. Se elimina la **función sobre la columna** (`YEAR(fecha)`), que impide usar el índice. Con un **filtro por rango** el motor sí puede usarlo.
-3. El **índice** sobre `fecha` evita recorrer toda la tabla (full scan).
+2. Se elimina la **función sobre la columna** (`YEAR(fecha_venta)`), que impide usar el índice. Con un **filtro por rango** el motor sí puede usarlo.
+3. El **índice** sobre `fecha_venta` evita recorrer toda la tabla (full scan).
 
 **Dos medidas DAX**
 
