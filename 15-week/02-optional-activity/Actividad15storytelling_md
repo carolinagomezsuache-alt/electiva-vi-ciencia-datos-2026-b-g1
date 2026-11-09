@@ -1,0 +1,15 @@
+# Storytelling del Proyecto Final - Ciencia de Datos
+
+## 1. Contexto
+[Describe brevemente el entorno, el problema o los datos analizados en tu proyecto final. Por ejemplo: El presente análisis examina el comportamiento histórico de las operaciones con el fin de identificar cuellos de botella y oportunidades de optimización en el proceso.]
+
+## 2. Pregunta Clave
+¿Cuáles son los factores críticos que impactan directamente en la variable objetivo del proyecto y cómo podemos controlarlos?
+
+## 3. Gráfico Clave y Hallazgo Principal
+> ![Gráfico Clave](./captura_grafico.png)
+
+* **Hallazgo:** A partir de la visualización del tablero, se evidencia de manera clara que [menciona aquí el patrón, tendencia o insight principal que descubriste en tus datos, asegurándote de que el título del gráfico exprese una conclusión].
+
+## 4. Recomendación Accionable
+Se recomienda a la organización implementar [indica una acción clara, medible y directa] para mitigar el riesgo identificado y mejorar el rendimiento del proceso en los próximos periodos.
